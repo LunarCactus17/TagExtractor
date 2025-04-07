@@ -23,7 +23,6 @@ public class TagExtractor extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Initialize components
         tagTextArea = new JTextArea();
         JScrollPane scrollPane = new JScrollPane(tagTextArea);
         sourceFileNameLabel = new JLabel("No file selected");
@@ -32,11 +31,9 @@ public class TagExtractor extends JFrame implements ActionListener {
         saveTagsButton = new JButton("Save Tags");
         fileChooser = new JFileChooser();
 
-        // Get and store the current directory
         currentDirectory = new File(System.getProperty("user.dir"));
         fileChooser.setCurrentDirectory(currentDirectory);
 
-        // Set up layout
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(selectFileButton);
         buttonPanel.add(selectStopWordsButton);
@@ -49,7 +46,6 @@ public class TagExtractor extends JFrame implements ActionListener {
         contentPane.add(scrollPane, BorderLayout.CENTER);
         contentPane.add(buttonPanel, BorderLayout.SOUTH);
 
-        // Add action listeners
         selectFileButton.addActionListener(this);
         selectStopWordsButton.addActionListener(this);
         saveTagsButton.addActionListener(this);
@@ -82,7 +78,6 @@ public class TagExtractor extends JFrame implements ActionListener {
             sourceFile = fileChooser.getSelectedFile();
             sourceFileNameLabel.setText("File: " + sourceFile.getName());
             currentDirectory = sourceFile.getParentFile();
-            // **Process only if both files are selected**
             if (stopWordsFile != null) {
                 processFile();
             }
@@ -99,7 +94,6 @@ public class TagExtractor extends JFrame implements ActionListener {
             stopWordsFile = fileChooser.getSelectedFile();
             loadStopWords();
             currentDirectory = stopWordsFile.getParentFile();
-            // **Process only if both files are selected**
             if (sourceFile != null) {
                 processFile();
             }
